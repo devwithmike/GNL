@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 14:03:53 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/27 16:21:39 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/27 16:36:13 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@
 int		get_next_line(const int fd, char **line)
 {
 	static char buf[BUFF_SIZE + 1];
+	static int	line_count;
 	int			i;
 	int			ret;
 
 	i = 0;
+	line_count = 0;
 	ret = read(fd, buf, BUFF_SIZE);
 	while (buf[i] != '\n')
 	{
 		ft_putchar(buf[i]);
 		i++;
 	}
+	line_count++;
 	return (0);
 }
 
