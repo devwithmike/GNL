@@ -5,52 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/27 12:42:51 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/28 14:04:21 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/29 10:15:49 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 char	*get_line(char *dest, char *src)
 {
+	int i;
+
 	i = 0;
-	while (src[i] != '\n' && src[i] != '\0')
+	while (src[i] != '\n' || src[i] != '\0')
 		i++;
-	dest = (char*)malloc(sizeof(char) * (i + 1));
+	dest = (char *)malloc(i + 1);
 	i = 0;
-	while (src[i] != '\n' && src[i] != '\0')
+	while (src[i] != '\n' || src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
 	return (dest);
 }
 
-int		remove_until(char *str, int delimeter)
+void	remove_line(char *str)
 {
 	int i;
 	int j;
 
-	j = 0;
 	i = 0;
-	while (str[i] != delimeter && str[i] != '\0')
-		i++;
-	if (str[i] == '\0')
-		return (0);
-	i++;
-	while (str[j])
-	{
-		if (str[i])
-			str[j] = str[i];
-		else
-			str[j] = '\0';
-		i++;
+	j = 0;
+	while (str[j] != '\n' || str[i] != '\0')
 		j++;
+	while (str[j] != '\0')
+	{
+		str[i] = str[j];
+		j++;
+		i++;
 	}
-	str[j] = '\0';
-	return (1);
+	str[i] = '\0';
 }
 
 int		get_next_line(const int fd, char **line)
@@ -59,18 +54,15 @@ int		get_next_line(const int fd, char **line)
 	static char	*text;
 	int			red;
 
-	(void)line;
-	if ((fd < 0 || line == NULL || read(fd, buf, 0) < 0))
+	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
 	red = read(fd, buf, BUFF_SIZE);
 	buf[red] = '\0';
 	if (!text)
 	{
-		text = (char*)malloc(ft_strlen(buf + 1));
+		text = (char *)malloc(ft_strlen(buf + 1));
 		ft_strcpy(text, buf);
 	}
 	*line = get_line(*line, text);
-	if (remove_until(text, '\n') == 0)
-		return (0);
-	return (1);
+	remove_line(text);
 }
