@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/19 11:50:58 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/20 15:59:41 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
-
-#endif
+int		ft_isdigit(int ch)
+{
+	if ((ch > 47) && (ch < 58))
+		return (1);
+	else
+		return (0);
+}

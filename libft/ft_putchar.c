@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/19 11:52:29 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/28 11:11:32 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "libft.h"
 
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
-
-#endif
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}

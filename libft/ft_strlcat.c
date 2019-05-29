@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/19 11:55:26 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/28 11:19:52 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "libft.h"
 
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
+size_t	ft_strlcat(char *dest, const char *src, size_t n)
+{
+	size_t	i;
+	size_t	destlen;
+	size_t	srclen;
 
-#endif
+	i = 0;
+	destlen = ft_strlen(dest);
+	srclen = ft_strlen(src);
+	if (n <= destlen)
+		return (srclen + n);
+	while ((dest[i] != '\0') && i < (n - 1))
+		i++;
+	while (*src && i < (n - 1))
+	{
+		dest[i] = *src;
+		i++;
+		src++;
+	}
+	dest[i] = '\0';
+	return (destlen + srclen);
+}

@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 13:28:19 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/29 15:21:41 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*get_line(char *dest, char *src)
 	i = 0;
 	while (src[i] != '\n' && src[i] != '\0' && src[i] != '\r')
 	{
-		ft_strcpy(dest, src);	
+		ft_strcpy(dest, src);
 		i++;
 	}
 	dest[i] = '\0';
@@ -39,10 +39,10 @@ int		remove_line(char *str)
 
 	j = 0;
 	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
 	if (str[i] == '\0')
 		return (0);
+	while (str[i] != '\n' && str[i] != '\0')
+		i++;
 	i++;
 	while (str[j])
 	{
@@ -73,7 +73,7 @@ int		get_next_line(const int fd, char **line)
 		ft_strcpy(text, buf);
 	}
 	*line = get_line(*line, text);
-	if (remove_line(text) == 0)
+	if (remove_line(text) <= 0)
 		return (0);
 	return (1);
 }

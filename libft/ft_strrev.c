@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/19 11:57:27 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/21 09:54:31 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+char	*ft_strrev(char *str)
+{
+	int count;
+	int len;
+	int ascii;
 
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
-
-#endif
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	count = 0;
+	while (count < len / 2)
+	{
+		ascii = str[count];
+		str[count] = str[len - count - 1];
+		str[len - count - 1] = ascii;
+		count++;
+	}
+	return (str);
+}

@@ -1,24 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/21 17:02:22 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/28 11:19:35 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "libft.h"
 
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*result;
+	int		i;
 
-#endif
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	i = 0;
+	if (!(result = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	{
+		return (NULL);
+	}
+	while (*s1)
+	{
+		result[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2)
+	{
+		result[i] = *s2;
+		i++;
+		s2++;
+	}
+	result[i] = '\0';
+	return (result);
+}
