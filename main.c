@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 13:23:06 by mimeyer          ###   ########.fr       */
+/*   Created: 2019/05/29 10:30:14 by mimeyer           #+#    #+#             */
+/*   Updated: 2019/05/29 13:27:50 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# define BUFF_SIZE 999999
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include "get_next_line.h"
+#include <stdio.h>
 
-char	*get_line(char *dest, char *src);
-int		remove_line(char *str);
-int		get_next_line(const int fd, char **line);
+int		main(int argc, char **argv)
+{
+	int		fd;
+	char	*line;
 
-#endif
+	if (argc == 1)
+		fd = 0;
+	else if (argc == 2)
+		fd = open(argv[1], O_RDONLY);
+	else
+		return (2);
+	while (get_next_line(fd, &line) == 1)
+	{
+		printf("%s\n", line);
+		free(line);
+	}
+	if (argc == 2)
+		close(fd);
+}

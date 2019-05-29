@@ -6,46 +6,55 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 10:15:49 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/29 13:28:19 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft.h"
+#include <stdio.h>
 
 char	*get_line(char *dest, char *src)
 {
 	int i;
 
 	i = 0;
-	while (src[i] != '\n' || src[i] != '\0')
+	while (src[i] != '\n' && src[i] != '\0' && src[i] != '\r')
 		i++;
-	dest = (char *)malloc(i + 1);
+	dest = ft_strnew(i);
 	i = 0;
-	while (src[i] != '\n' || src[i] != '\0')
+	while (src[i] != '\n' && src[i] != '\0' && src[i] != '\r')
 	{
-		dest[i] = src[i];
+		ft_strcpy(dest, src);	
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }
 
-void	remove_line(char *str)
+int		remove_line(char *str)
 {
 	int i;
 	int j;
 
-	i = 0;
 	j = 0;
-	while (str[j] != '\n' || str[i] != '\0')
-		j++;
-	while (str[j] != '\0')
-	{
-		str[i] = str[j];
-		j++;
+	i = 0;
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
+	if (str[i] == '\0')
+		return (0);
+	i++;
+	while (str[j])
+	{
+		if (str[i])
+			str[j] = str[i];
+		else
+			str[j] = '\0';
+		i++;
+		j++;
 	}
-	str[i] = '\0';
+	str[j] = '\0';
+	return (1);
 }
 
 int		get_next_line(const int fd, char **line)
@@ -60,9 +69,11 @@ int		get_next_line(const int fd, char **line)
 	buf[red] = '\0';
 	if (!text)
 	{
-		text = (char *)malloc(ft_strlen(buf + 1));
+		text = ft_strnew(ft_strlen(buf));
 		ft_strcpy(text, buf);
 	}
 	*line = get_line(*line, text);
-	remove_line(text);
+	if (remove_line(text) == 0)
+		return (0);
+	return (1);
 }
