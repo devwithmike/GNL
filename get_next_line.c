@@ -6,13 +6,11 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:21:41 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/30 08:48:57 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
-#include <stdio.h>
 
 char	*get_line(char *dest, char *src)
 {
@@ -41,7 +39,7 @@ int		remove_line(char *str)
 	i = 0;
 	if (str[i] == '\0')
 		return (0);
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\n' && str[i] != '\0' && str[i] != '\r')
 		i++;
 	i++;
 	while (str[j])
@@ -71,6 +69,10 @@ int		get_next_line(const int fd, char **line)
 	{
 		text = ft_strnew(ft_strlen(buf));
 		ft_strcpy(text, buf);
+	}
+	if (red < 0)
+	{
+		return (0);
 	}
 	*line = get_line(*line, text);
 	if (remove_line(text) <= 0)

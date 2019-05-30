@@ -6,13 +6,14 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:11:36 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/29 15:25:07 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/30 08:51:00 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 200
+# define BUFF_SIZE 3
+# include "libft/libft.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
