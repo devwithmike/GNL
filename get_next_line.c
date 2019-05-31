@@ -6,11 +6,12 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/30 08:48:57 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/05/31 12:39:17 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 char	*get_line(char *dest, char *src)
 {
@@ -23,22 +24,20 @@ char	*get_line(char *dest, char *src)
 	i = 0;
 	while (src[i] != '\n' && src[i] != '\0' && src[i] != '\r')
 	{
-		ft_strcpy(dest, src);
+		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = '\0';
 	return (dest);
 }
 
-int		remove_line(char *str)
+char	*remove_line(char *str)
 {
 	int i;
 	int j;
 
 	j = 0;
 	i = 0;
-	if (str[i] == '\0')
-		return (0);
 	while (str[i] != '\n' && str[i] != '\0' && str[i] != '\r')
 		i++;
 	i++;
@@ -52,7 +51,7 @@ int		remove_line(char *str)
 		j++;
 	}
 	str[j] = '\0';
-	return (1);
+	return (str);
 }
 
 int		get_next_line(const int fd, char **line)
@@ -63,19 +62,16 @@ int		get_next_line(const int fd, char **line)
 
 	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
-	red = read(fd, buf, BUFF_SIZE);
-	buf[red] = '\0';
-	if (!text)
+	while ((red = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		text = ft_strnew(ft_strlen(buf));
+		if (!text)
+			text = ft_strnew(ft_strlen(buf));
 		ft_strcpy(text, buf);
+		//printf("before remove: '%s'\n", text);
+		*line = get_line(*line, text);
+		text = remove_line(text);
+		//printf("after remove: '%s'\n", text);
+		return (1);
 	}
-	if (red < 0)
-	{
-		return (0);
-	}
-	*line = get_line(*line, text);
-	if (remove_line(text) <= 0)
-		return (0);
-	return (1);
+	return (0);
 }
