@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/31 12:39:17 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/04 16:14:22 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		get_next_line(const int fd, char **line)
 {
 	char		buf[BUFF_SIZE + 1];
 	static char	*text;
+	char		*temp;
 	int			red;
 
 	if (fd < 0 || line == NULL || read(fd, buf, 0) < 0)
@@ -66,11 +67,11 @@ int		get_next_line(const int fd, char **line)
 	{
 		if (!text)
 			text = ft_strnew(ft_strlen(buf));
-		ft_strcpy(text, buf);
-		//printf("before remove: '%s'\n", text);
+		temp = ft_strjoin(text, buf);
+		ft_strdel(&text);
+		text = ft_strdup(temp);
 		*line = get_line(*line, text);
 		text = remove_line(text);
-		//printf("after remove: '%s'\n", text);
 		return (1);
 	}
 	return (0);
