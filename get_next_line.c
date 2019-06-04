@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/04 16:14:22 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/04 17:06:15 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		get_next_line(const int fd, char **line)
 	while ((red = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		if (!text)
-			text = ft_strnew(ft_strlen(buf));
+			text = ft_strnew(0);
 		temp = ft_strjoin(text, buf);
 		ft_strdel(&text);
 		text = ft_strdup(temp);
