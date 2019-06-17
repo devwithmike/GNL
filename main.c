@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 10:30:14 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/04 16:37:47 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/17 09:42:35 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		main(int argc, char **argv)
 		return (2);
 	while (get_next_line(fd, &line) == 1)
 	{
-		printf("%s\n", line);
+		printf("%s", line);
 		free(line);
 	}
 	if (argc == 2)
