@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/17 11:01:38 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/17 15:15:27 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int		get_next_line(const int fd, char **line)
 		if (ft_strchr(text, '\n'))
 			break ;
 	}
+	if (ft_strlen(text) <= 0)
+		return (0);
 	*line = get_line(*line, text);
 	text = remove_line(text);
 	return (1);
