@@ -6,9 +6,11 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 11:57:27 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/21 09:54:31 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:52:30 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strrev(char *str)
 {
@@ -16,9 +18,7 @@ char	*ft_strrev(char *str)
 	int len;
 	int ascii;
 
-	len = 0;
-	while (str[len] != '\0')
-		len++;
+	len = ft_strlen(str);
 	count = 0;
 	while (count < len / 2)
 	{

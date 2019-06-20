@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/20 08:11:03 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/28 11:18:09 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/13 14:55:08 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,10 @@
 
 int		ft_strequ(char const *s1, char const *s2)
 {
-	int	i;
-
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (0);
-	i = 0;
-	while ((s1[i] != '\0') || (s2[i] != '\0'))
-	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
-	}
-	return (1);
+	if (ft_strcmp(s1, s2) == 0)
+		return (1);
+	else
+		return (0);
 }

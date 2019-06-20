@@ -6,9 +6,11 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 11:53:30 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/21 08:34:49 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:44:50 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strcat(char *dest, const char *src)
 {
@@ -16,13 +18,9 @@ char	*ft_strcat(char *dest, const char *src)
 	int src_len;
 	int i;
 
-	dest_len = 0;
-	src_len = 0;
 	i = 0;
-	while (dest[dest_len] != '\0')
-		dest_len++;
-	while (src[src_len] != '\0')
-		src_len++;
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen(src);
 	while ((i < src_len) && (src[i] != '\0'))
 	{
 		dest[dest_len + i] = src[i];

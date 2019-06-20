@@ -6,9 +6,11 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 11:54:41 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/05/27 08:57:22 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/11 12:46:05 by mimeyer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strcpy(char *dest, const char *src)
 {
@@ -16,9 +18,7 @@ char	*ft_strcpy(char *dest, const char *src)
 	int i;
 
 	i = 0;
-	len = 0;
-	while (src[len] != '\0')
-		len++;
+	len = ft_strlen(src);
 	len++;
 	while (i < len)
 	{
