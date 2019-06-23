@@ -6,7 +6,7 @@
 /*   By: mimeyer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 08:54:19 by mimeyer           #+#    #+#             */
-/*   Updated: 2019/06/21 09:25:28 by mimeyer          ###   ########.fr       */
+/*   Updated: 2019/06/23 12:15:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int		get_next_line(const int fd, char **line)
 	}
 	if (ft_strlen(text) != 0)
 	{
+		if (!(ft_strchr(text,'\n')))
+		{
+			*line = ft_strdup(text);
+			ft_strclr(text);
+			return(1);
+		}
 		*ptr = '\0';
 		temp = ft_strdup(ptr + 1);
 		*line = ft_strdup(text);
